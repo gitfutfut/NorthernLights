@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+    <head>     
+        <title>Northern Lights</title>   
+        <meta charset="utf-8"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/glitch.css">
+        <script
+              src="https://code.jquery.com/jquery-3.2.1.js"
+              integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+              crossorigin="anonymous"></script>
+        </script>
+    </head>
+    <body>   
+
+<audio id="sound" preload="auto">
+    <source src="audio/old.mp3"></source>
+</audio>
+
+<article>
+ <h1 id="soundglitch">NorthernLights</h1>
+</article>
+  
+<video autoplay loop id="video-background" muted plays-inline playbackRate = 0.5>
+  <source src="video/NorthernLights.mp4" type="video/mp4">
+</video>
+<script>
+window.onload = function(){
+var vid = document.querySelector("#video-background");
+vid.playbackRate = 0.6;
+}
+</script>
+
+<audio autoplay preload loop>
+  <source src="audio/Wind.mp3" type="audio/mp3">
+  <source src="audio/Wind.ogg" type="audio/ogg">
+</audio> 
+
+
+<script>
+$('h1').hover(function() {
+  $(this).addClass('glitch');
+}, function() {
+  $(this).removeClass('glitch');
+});
+</script>
+
+<script>
+$("#soundglitch")
+  .each(function(i) {
+    if (i != 0) {
+      $("#sound")
+        .clone()
+        .attr("id", "sound" + i)
+        .appendTo($(this).parent());
+    }
+    $(this).data("beep", i);
+  })
+  .mouseenter(function() {
+    $("#sound" + $(this).data("beep"))[0].play();
+  });
+$("#sound").attr("id", "sound0");
+</script>
+
+
+    </body>
+</html>
